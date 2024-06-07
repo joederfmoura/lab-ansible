@@ -2,9 +2,10 @@
 # vi: set ft=ruby  :
 
 machines = {
+  "ansible" => {"memory" => "1024", "cpu" => "2", "ip" => "100", "image" => "ubuntu/jammy64"},
   "rocky"   => {"memory" => "1024", "cpu" => "2", "ip" => "101", "image" => "rockylinux/9"},
-  "debian"   => {"memory" => "1024", "cpu" => "2", "ip" => "102", "image" => "debian/jessie64"},
-  "ansible"   => {"memory" => "1024", "cpu" => "2", "ip" => "100", "image" => "ubuntu/jammy64"},
+  "debian"  => {"memory" => "1024", "cpu" => "2", "ip" => "102", "image" => "debian/jessie64"},
+
 }
 
 Vagrant.configure("2") do |config|
@@ -23,6 +24,11 @@ Vagrant.configure("2") do |config|
 #      machine.vm.provision "shell", path: "provision.sh"
 #      machine.vm.provision "shell", path: "docker-install.sh"
       machine.vm.provision "shell", inline: "hostnamectl set-hostname #{name}.homelab.local"
+
+      #Instala Ansible apenas na vm ansible
+      if "#{name}" == "ansible"
+        machine.vm.provision "shell", path: "ansible-install.sh"
+      else
     end
   end
 end
