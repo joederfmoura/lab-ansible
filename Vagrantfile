@@ -21,6 +21,8 @@ Vagrant.configure("2") do |config|
         vb.cpus = conf["cpu"]
         vb.customize ["modifyvm", :id, "--groups", "/LAB-Ansible"]
       end
+
+      #Executa em todas as VMs
       machine.vm.provision "shell", path: "provision.sh"
       machine.vm.provision "shell", inline: "hostnamectl set-hostname #{name}.homelab.local"
 
@@ -28,6 +30,7 @@ Vagrant.configure("2") do |config|
       if "#{name}" == "ansible"
         machine.vm.provision "shell", path: "ansible-install.sh"
       end
+      #Prepara as VMs para serem gerenciadas pela VM Ansible
       if "#{name}" != "ansible"
         machine.vm.provision "shell", path: "hosts_init.sh"
       end
