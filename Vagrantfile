@@ -3,8 +3,8 @@
 
 machines = {
   "ansible" => {"memory" => "1024", "cpu" => "2", "ip" => "100", "image" => "ubuntu/jammy64"},
-  "rocky"   => {"memory" => "1024", "cpu" => "2", "ip" => "101", "image" => "rockylinux/9"},
-  "debian"  => {"memory" => "1024", "cpu" => "2", "ip" => "102", "image" => "debian/jessie64"},
+  "rocky"   => {"memory" => "512", "cpu" => "2", "ip" => "101", "image" => "rockylinux/9"},
+  "debian"  => {"memory" => "512", "cpu" => "2", "ip" => "102", "image" => "debian/bullseye64"},
 
 }
 
@@ -21,14 +21,16 @@ Vagrant.configure("2") do |config|
         vb.cpus = conf["cpu"]
         vb.customize ["modifyvm", :id, "--groups", "/LAB-Ansible"]
       end
-#      machine.vm.provision "shell", path: "provision.sh"
-#      machine.vm.provision "shell", path: "docker-install.sh"
+      machine.vm.provision "shell", path: "provision.sh"
       machine.vm.provision "shell", inline: "hostnamectl set-hostname #{name}.homelab.local"
 
       #Instala Ansible apenas na vm ansible
       if "#{name}" == "ansible"
         machine.vm.provision "shell", path: "ansible-install.sh"
-      else
+      end
+      if "#{name}" != "ansible"
+        machine.vm.provision "shell", path: "hosts_init.sh"
+      end
     end
   end
 end
