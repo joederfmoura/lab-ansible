@@ -29,7 +29,7 @@ Para configurar o ambiente de desenvolvimento, você precisará dos seguintes so
 1. **Clone o repositório**
    - Primeiro, você precisa clonar o repositório do GitHub. Abra o terminal e execute o seguinte comando:
      ```sh
-     git clone https://github.dev/joederfmoura/lab-ansible
+     git clone https://github.com/joederfmoura/lab-ansible
      ```
 
 2. **Acesse a pasta do projeto**
