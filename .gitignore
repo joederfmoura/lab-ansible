@@ -1,1 +1,9 @@
+#Ignora a pastta vagrant
 .vagrant/
+
+#Ignora o conteúdo da pasta key
+.key/*
+/key
+key/id_rsa.pub
+key/id_rsa
+key/id_rsa.pub.old
