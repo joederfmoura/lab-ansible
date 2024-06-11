@@ -50,19 +50,34 @@ Para configurar o ambiente de desenvolvimento, você precisará dos seguintes so
 
     - Depois de iniciar o Vagrant, você pode se conectar às máquinas virtuais usando SSH. Execute os seguintes comandos conforme necessário:
 
-- Para se conectar à VM `ansible`:
+- Para se conectar à VM `ansible` a partir do host hospedeiro:
   ```sh
   vagrant ssh ansible
    ```
 
-- Para se conectar à VM `rocky`:
+- Para se conectar à VM `rocky` a partir do host hospedeiro:
   ```sh
   vagrant ssh rocky
    ```
-- Para se conectar à VM `debian`:
+- Para se conectar à VM `debian` a partir do host hospedeiro:
   ```sh
   vagrant ssh debian
    ```
+
+## Como conectar via ssh a partir da VM ansible
+
+Uma vez que esteja conectado via SSH à VM Ansible teste a conexão ssh com os hosts rocky e debian
+
+  ```sh
+  ssh vagrant@10.20.20.101 hostname
+   ```
+
+   e 
+
+```sh
+  ssh vagrant@10.20.20.102 hostname
+   ```
+
 
 
 ## Observações
