@@ -53,8 +53,7 @@ sudo chmod 760 /var/log/ansible.log
 
 # Cria e copia as chaves SSH
 mkdir -p /vagrant/key
-cd /vagrant/key
-ssh-keygen -q -t rsa -f id_rsa -N ''
+ssh-keygen -q -t rsa -f /vagrant/key/id_rsa -N ''
 mkdir -p /home/vagrant/.ssh
 sudo cp /vagrant/key/id_rsa /home/vagrant/.ssh/id_rsa
 sudo cp /vagrant/key/id_rsa.pub /home/vagrant/.ssh/id_rsa.pub
